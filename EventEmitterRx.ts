@@ -1,6 +1,6 @@
 /// <reference path="./typings/tsd.d.ts" />
 
-import * as Rx from 'rx';
+import { Observable, Subscription ,Subject} from 'rxjs';
 
 /**
  * EventEmitter
@@ -23,8 +23,8 @@ export default class EventEmitterRx {
      * @param data {Object} Event data
      */
     next(name:string, data:Object = {}) {
-        this.subjects[name] || (this.subjects[name] = new Rx.Subject());
-        this.subjects[name].onNext(data);
+        this.subjects[name] || (this.subjects[name] = new Subject());
+        this.subjects[name].next(data);
     }
 
     /**
@@ -33,8 +33,8 @@ export default class EventEmitterRx {
      * @param handler {any} Callback of the listener (subscriber)
      * @returns {Rx.IDisposable}
      */
-    subscribe(name:string, handler: any):Rx.IDisposable {
-        this.subjects[name] || (this.subjects[name] = new Rx.Subject());
+    subscribe(name:string, handler: any): Subscription {
+        this.subjects[name] || (this.subjects[name] = new Subject());
         return this.subjects[name].subscribe(handler);
     }
 
@@ -44,16 +44,16 @@ export default class EventEmitterRx {
     * @returns {boolean} Returns true if the Subject has observers, else false.
     */
     hasObserver(name:string):boolean{
-        return this.subjects[name] !== undefined && this.subjects[name].hasObservers();
+        return this.subjects[name] !== undefined && this.subjects[name].observers.length>0;
     }
 
     /**
      * Cleans up a Subject and remove all its observers.
      * Also it removes the subject from subject map.
      */
-    dispose(name:string) {
+   unsubscribe(name:string) {
         if (this.subjects[name]) {
-            this.subjects[name].dispose();
+            this.subjects[name].unsubscribe();
             delete this.subjects[name];
         }
     }
@@ -61,12 +61,12 @@ export default class EventEmitterRx {
     /**
      * Clean up all Observers and clean up map of Subjects
      */
-    disposeAll() {
+    unsubscribeAll() {
         var subjects = this.subjects;
         var hasOwnProp:Function = {}.hasOwnProperty;
         for (var prop in subjects) {
             if (hasOwnProp.call(subjects, prop)) {
-                subjects[prop].dispose();
+                subjects[prop].unsubscribe();
             }
         }
 
