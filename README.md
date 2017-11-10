@@ -9,31 +9,7 @@ EventEmitter using [RxJS](https://github.com/Reactive-Extensions/RxJS).
 [travis-url]: https://travis-ci.org/stylelab-io/event-emitter-rx
 [travis-image]: https://travis-ci.org/stylelab-io/event-emitter-rx.svg?branch=master
 
-## Install
-
-### Source by npm
-
-```bash
-$ npm install --save-dev eventemitter-rx
-```
-
-### or by jspm
-
-```bash
-$ jspm install --save eventemitter-rx
-```
-
 ### TSD files are available at our [stylelab-io/DefinitelyTyped](https://github.com/stylelab-io/DefinitelyTyped/tree/master/eventemitter-rx) fork
-
-```bash
-$ tsd install eventemitter-rx --save
-```
-
-## Build
-
-```bash
-$ npm run start
-```
 
 ## Usage
 
@@ -78,20 +54,10 @@ observer.dispose();
 
 Clone project:
 
-```bash
-$ git clone https://github.com/stylelab-io/event-emitter-rx.git && cd $_
-```
-
-Install dependencies (only once):
-
-```bash
-$ npm i
-```
-
 Run tests:
 
 ```bash
-$ npm test
+$ npm run test
 ```
 
 ## Release History
