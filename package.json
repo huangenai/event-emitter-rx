@@ -2,7 +2,7 @@
     "name": "eventemitter-rx",
     "version": "1.1.0",
     "description": "EventEmitter based on RxJS",
-    "main": "EventEmitterRx.js",
+    "main": "src/lib/EventEmitterRx.ts",
     "scripts": {
         "test2": "tsc && mocha --require source-map-support/register dist/__test__/main"
     },
