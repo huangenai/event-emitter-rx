@@ -1,7 +1,4 @@
-node_modules/
-typings/
-**/*.spec.js
-**/*.js
-!wallaby.js
-!EventEmitterRx.js
+node_modules
 .idea
+npm-debug.log
+.DS_Store
